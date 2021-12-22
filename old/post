@@ -7,10 +7,15 @@
   <h2 class="pb-3">POST</h2>
   <div class="card py-2 mb-5" style="width: 50vw">
     <div class="card-body">
-      <form action="" method="post">
-        {{form.hidden_tag()}}
+      <form>
         <div id="post-form">
-          {{form.title(class="mb-3 p-2 text-input", placeholder="Title")}}
+          <input
+            type="text"
+            name="title"
+            required
+            placeholder="Title"
+            class="mb-3 p-2 text-input"
+          />
           <select class="mb-3 p-2 text-input" name="category" required>
             <option selected>Video</option>
             <option value="Games">Games</option>
@@ -19,10 +24,15 @@
             <option value="Porn">Porn</option>
             <option value="Audio">Audio</option>
           </select>
-
-          {{form.magnet(class="mb-3 p-2 text-input", placeholder="Magnet URL")}}
+          <input
+            type="text"
+            name="magnet"
+            required
+            placeholder="Magnet URL"
+            class="mb-3 p-2 text-input"
+          />
         </div>
-        {{form.submit(class="btn btn-info")}}
+        <button class="btn btn-info">POST</button>
       </form>
     </div>
   </div>

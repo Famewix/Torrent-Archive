@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, url_for
 import datetime
 import os
+from .forms import PostForm
 
 posts = [
     {
@@ -51,4 +52,9 @@ def about():
 
 @views.route("/post", methods=['GET','POST'])
 def post():
-    return render_template("post.html")
+    form = PostForm()
+    if form.validate_on_submit():
+        print('success')
+    else:
+        print('error')
+    return render_template("post.html", form=form)
