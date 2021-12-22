@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for
+from flask import Blueprint, render_template, url_for, flash
 import datetime
 import os
 from .forms import PostForm
@@ -54,7 +54,7 @@ def about():
 def post():
     form = PostForm()
     if form.validate_on_submit():
-        print('success')
+        flash('successf', 'success')
     else:
-        print('error')
+        flash('error', 'danger')
     return render_template("post.html", form=form)
