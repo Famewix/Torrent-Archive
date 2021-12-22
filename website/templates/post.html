@@ -1,0 +1,38 @@
+{% extends "base.html" %} {% block head %}
+
+<title>Personal Torrent Archive - post</title>
+{% endblock head %} {% block body %}
+
+<section class="center p-3">
+  <div class="card py-2 mb-5" style="width: 50vw">
+    <div class="card-body">
+      <form>
+        <div id="post-form">
+          <input
+            type="text"
+            name="title"
+            placeholder="Title"
+            class="mb-3 p-2 text-input"
+          />
+          <select class="mb-3 p-2 text-input">
+            <option selected>Video</option>
+            <option value="1">Games</option>
+            <option value="2">Application</option>
+            <option value="3">Other</option>
+            <option value="4">Porn</option>
+            <option value="5">Audio</option>
+          </select>
+          <input
+            type="text"
+            name="magnet"
+            placeholder="Magnet URL"
+            class="mb-3 p-2 text-input"
+          />
+        </div>
+        <button class="btn btn-info">POST</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+{% endblock body %}

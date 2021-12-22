@@ -8,3 +8,16 @@
   width: 60px;
   height: 60px;
 }
+
+#post-form {
+  display: flex;
+  flex-direction: column;
+  padding: 3px;
+  font-size: 20px;
+}
+
+.text-input {
+  border-style: solid;
+  /* border-color: black; */
+  border-radius: 4px;
+}

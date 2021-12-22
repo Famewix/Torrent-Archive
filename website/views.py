@@ -47,3 +47,8 @@ def home():
 @views.route("/about")
 def about():
     return render_template("about.html")
+
+
+@views.route("/post", methods=['GET','POST'])
+def post():
+    return render_template("post.html")
