@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% block head %}
+
+<title>Personal Torrent Archive - Login</title>
+{% endblock head %} {% block body %}
+<section class="center p-3">
+    <h2 class="pb-3">LOGIN</h2>
+    <div class="card py-2 mb-5" style="width: 50vw">
+      <div class="card-body">
+        <form action="" method="post">
+          {{form.hidden_tag()}}
+          <div id="post-form">
+            {{form.username(class="mb-3 p-2 text-input", placeholder="username")}}
+  
+            {{form.password(class="mb-3 p-2 text-input", placeholder="password")}}
+          </div>
+          <div class="form-check mb-3">
+              {{form.remember(class="form-check-input")}}
+              {{form.remember.label(class="form-check-label")}}
+          </div>
+          {{form.submit(class="btn btn-info")}}
+        </form>
+      </div>
+    </div>
+  </section>
+  
+{% endblock body %}

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import StringField, SubmitField, BooleanField, PasswordField
 from wtforms.validators import DataRequired, Length
 import re
 from wtforms.validators import ValidationError
@@ -16,3 +16,9 @@ class PostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired(), Length(min=8, max=60)])
     magnet = StringField('Magnet URL', validators=[DataRequired(), magnet_url])
     submit = SubmitField("POST")
+
+class LoginForm(FlaskForm):
+    username = StringField('username', validators=[DataRequired()])
+    password = PasswordField('password', validators=[DataRequired()])
+    remember = BooleanField('Remember Me')
+    submit = SubmitField("LOGIN")

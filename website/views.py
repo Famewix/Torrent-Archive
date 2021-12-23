@@ -1,7 +1,7 @@
-from flask import Blueprint, render_template, url_for, flash
+from flask import Blueprint, render_template, url_for, flash, request
 import datetime
 import os
-from .forms import PostForm
+from .forms import PostForm, LoginForm
 
 posts = [
     {
@@ -49,12 +49,22 @@ def home():
 def about():
     return render_template("about.html")
 
+@views.route("/login", methods=["POST", "GET"])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        flash('Successfully Logged in.', 'success')
+    else:
+        if request.method != 'GET':
+            flash('error', 'danger')
+    return render_template("login.html", form=form)
 
 @views.route("/post", methods=['GET','POST'])
 def post():
     form = PostForm()
     if form.validate_on_submit():
-        flash('successf', 'success')
+        flash('Post successful.', 'success')
     else:
-        flash('error', 'danger')
+        if request.method != 'GET':
+            flash('error', 'danger')
     return render_template("post.html", form=form)
