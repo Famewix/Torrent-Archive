@@ -1,13 +1,18 @@
 {% extends "base.html" %} {% block head %}
 
-<title>Personal Torrent Archive</title>
-
+<title>Personal Torrent Archive - Search Torrent</title>
 {% endblock head %} {% block body %}
 
-<main class="center">
-  <h2>Recent</h2>
-  <hr />
-  {% for post in posts.items%}
+<section class="center p-3">
+    <form method="GET" id="search-bar" class="mb-4">
+        <input 
+        class="form-control mr-sm-2" 
+        type="search" 
+        placeholder="Search Torrent" 
+        aria-label="Search"
+		name="q">
+    </form>
+  {% for post in posts%}
   <div class="card py-2 mb-5" style="width: 50vw">
     <div class="card-body">
       <div class="d-felx">
@@ -38,28 +43,8 @@
       </div>
     </div>
   </div>
-  {% endfor %}
-</main>
-<div class="container" align="center">
-    
-  {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
-  {% if page_num %}
-    {% if posts.page == page_num %}
-      <a class="btn btn-secondary mb-4" href="{{ url_for('views.home', page=page_num) }}">{{ page_num }}</a>
-    {% else %}
-      <a class="btn btn-outline-secondary mb-4" href="{{ url_for('views.home', page=page_num) }}">{{ page_num }}</a>
-    {% endif %}
-  {% else %}
-    ...
-  {% endif %}
-  {% endfor %}
-</div>
-
-<script>
-  function copyToClipboard(text) {
-    navigator.clipboard.writeText(text);
-    alert("Copied the text: " + text);
-  }
-</script>
+  {% endfor %} 
+  
+</section>
 
 {% endblock body %}

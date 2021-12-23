@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, BooleanField, PasswordField
+from wtforms import StringField, SubmitField, BooleanField, PasswordField, SelectField
 from wtforms.validators import DataRequired, Length
 import re
 from wtforms.validators import ValidationError
@@ -14,6 +14,7 @@ def magnet_url(form, field):
 
 class PostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired(), Length(min=8, max=60)])
+    category = SelectField("Category", choices=["Video", "Games", "Application", "Other", "Porn", "Audio"], validators=[DataRequired()])
     magnet = StringField('Magnet URL', validators=[DataRequired(), magnet_url])
     submit = SubmitField("POST")
 

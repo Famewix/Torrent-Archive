@@ -7,54 +7,36 @@ from . import app, db, bcrypt
 from flask_login import login_user, current_user, logout_user, login_required
 
 
-posts = [
-    {
-        'title': 'Torrent 1',
-        'magnet': 'kaljnskndhnakishdihaiushihdaishdihaishdihaishdahsdihahsihaihsdhasidhiahidhiashdia',
-        'category': 'movie',
-        'posted': '26 March, 2021'
-    },
-    {
-        'title': 'Torrent 2',
-        'magnet': 'kaljnskndhnakishdihaiushihdaishdihaishdihaishdahsdihahsihaihsdhasidhiahidhiashdia',
-        'category': 'movie',
-        'posted': '26 March, 2021'
-    },
-    {
-        'title': 'Torrent 3',
-        'magnet': 'llllaljnskndhnakishdihaiushihdaishdihaishdihaishdahsdihahsihaihsdhasidhiahidhiashdia',
-        'category': 'movie',
-        'posted': '26 March, 2021'
-    },
-    {
-        'title': 'Torrent 4',
-        'magnet': 'awwwaljnskndhnakishdihaiushihdaishdihaishdihaishdahsdihahsihaihsdhasidhiahidhiashdia',
-        'category': 'movie',
-        'posted': '26 March, 2021'
-    },
-    {
-        'title': 'Torrent 5',
-        'magnet': 'kaljnskndhnakishdihaiushihdaishdihaishdihaishdahsdihahsihaihsdhasidhiahidhiashdia',
-        'category': 'movie',
-        'posted': '26 March, 2021'
-    },
-]
-
-
 views = Blueprint("views", __name__)
 
 @views.route("/")
 @views.route("/home")
 def home():
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.order_by(Post.date_posted.desc()).paginate(per_page=2, page=page)
     return render_template("index.html", posts=posts)
 
+@views.route("/browse")
+def browse():
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.order_by(Post.title).paginate(per_page=2, page=page)
+    return render_template("browse.html", posts=posts)
 
-@views.route("/about")
-def about():
-    return render_template("about.html")
+@views.route("/search")
+def search():
+    q = request.args.get('q')
+    if q:
+        searched_posts = Post.query.filter(Post.title.contains(q))
+        return render_template('search.html', posts=searched_posts)
+    else:
+        posts = []
+        return render_template('search.html', posts=posts)
 
 @views.route("/login", methods=["POST", "GET"])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for("views.home"))
+
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
@@ -67,11 +49,25 @@ def login():
     return render_template("login.html", form=form)
 
 @views.route("/post", methods=['GET','POST'])
+@login_required
 def post():
     form = PostForm()
     if form.validate_on_submit():
+        post = Post(title=form.title.data, category=form.category.data ,magnet_url=form.magnet.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
         flash('Post successful.', 'success')
     else:
         if request.method != 'GET':
             flash('Fill the form correctly.', 'danger')
     return render_template("post.html", form=form)
+
+
+@views.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('views.home'))
+
+@views.route("/about")
+def about():
+    return render_template("about.html")

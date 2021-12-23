@@ -1,12 +1,9 @@
 {% extends "base.html" %} {% block head %}
 
-<title>Personal Torrent Archive</title>
-
+<title>Personal Torrent Archive - Browse Torrent</title>
 {% endblock head %} {% block body %}
 
-<main class="center">
-  <h2>Recent</h2>
-  <hr />
+<section class="center p-3">
   {% for post in posts.items%}
   <div class="card py-2 mb-5" style="width: 50vw">
     <div class="card-body">
@@ -38,28 +35,22 @@
       </div>
     </div>
   </div>
-  {% endfor %}
-</main>
+  {% endfor %} 
+  
+</section>
 <div class="container" align="center">
     
-  {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
-  {% if page_num %}
-    {% if posts.page == page_num %}
-      <a class="btn btn-secondary mb-4" href="{{ url_for('views.home', page=page_num) }}">{{ page_num }}</a>
+    {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+    {% if page_num %}
+      {% if posts.page == page_num %}
+        <a class="btn btn-secondary mb-4" href="{{ url_for('views.browse', page=page_num) }}">{{ page_num }}</a>
+      {% else %}
+        <a class="btn btn-outline-secondary mb-4" href="{{ url_for('views.browse', page=page_num) }}">{{ page_num }}</a>
+      {% endif %}
     {% else %}
-      <a class="btn btn-outline-secondary mb-4" href="{{ url_for('views.home', page=page_num) }}">{{ page_num }}</a>
+      ...
     {% endif %}
-  {% else %}
-    ...
-  {% endif %}
-  {% endfor %}
+    {% endfor %}
 </div>
-
-<script>
-  function copyToClipboard(text) {
-    navigator.clipboard.writeText(text);
-    alert("Copied the text: " + text);
-  }
-</script>
 
 {% endblock body %}

@@ -1,0 +1,32 @@
+posts = [
+    {
+        'title': 'Torrent 1',
+        'magnet_url': 'kaljnskndhnakishdihaiushihdaishdihaishdihaishdahsdihahsihaihsdhasidhiahidhiashdia',
+        'category': 'movie',
+        'date_posted': '26 March, 2021'
+    },
+    {
+        'title': 'Torrent 2',
+        'magnet_url': 'kaljnskndhnakishdihaiushihdaishdihaishdihaishdahsdihahsihaihsdhasidhiahidhiashdia',
+        'category': 'movie',
+        'date_posted': '26 March, 2021'
+    },
+    {
+        'title': 'Torrent 3',
+        'magnet_url': 'llllaljnskndhnakishdihaiushihdaishdihaishdihaishdahsdihahsihaihsdhasidhiahidhiashdia',
+        'category': 'movie',
+        'date_posted': '26 March, 2021'
+    },
+    {
+        'title': 'Torrent 4',
+        'magnet_url': 'awwwaljnskndhnakishdihaiushihdaishdihaishdihaishdahsdihahsihaihsdhasidhiahidhiashdia',
+        'category': 'movie',
+        'date_posted': '26 March, 2021'
+    },
+    {
+        'title': 'Torrent 5',
+        'magnet_url': 'kaljnskndhnakishdihaiushihdaishdihaishdihaishdahsdihahsihaihsdhasidhiahidhiashdia',
+        'category': 'movie',
+        'date_posted': '26 March, 2021'
+    },
+]
