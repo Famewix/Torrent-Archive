@@ -13,13 +13,13 @@ views = Blueprint("views", __name__)
 @views.route("/home")
 def home():
     page = request.args.get('page', 1, type=int)
-    posts = Post.query.order_by(Post.date_posted.desc()).paginate(per_page=2, page=page)
+    posts = Post.query.order_by(Post.date_posted.desc()).paginate(per_page=5, page=page)
     return render_template("index.html", posts=posts)
 
 @views.route("/browse")
 def browse():
     page = request.args.get('page', 1, type=int)
-    posts = Post.query.order_by(Post.title).paginate(per_page=2, page=page)
+    posts = Post.query.order_by(Post.title).paginate(per_page=5, page=page)
     return render_template("browse.html", posts=posts)
 
 @views.route("/search")
@@ -57,6 +57,7 @@ def post():
         db.session.add(post)
         db.session.commit()
         flash('Post successful.', 'success')
+        return redirect(url_for('views.home'))
     else:
         if request.method != 'GET':
             flash('Fill the form correctly.', 'danger')
