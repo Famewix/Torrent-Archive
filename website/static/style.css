@@ -19,6 +19,11 @@
   height: 60px;
 }
 
+.mn-img {
+  width: 24px;
+  height: 24px;
+}
+
 #post-form {
   display: flex;
   flex-direction: column;

@@ -1,0 +1,33 @@
+<div class="card py-2 mb-5" style="width: 50vw">
+  <div class="card-body">
+    <div class="d-felx">
+      <div class="author d-flex align-items-center pb-2">
+        <!-- <img class="author-img" src="https://source.boringavatars.com/pixel/60" /> -->
+        <img
+          class="author-img"
+          src="{{ url_for('static', filename='author.svg') }}"
+        />
+        <h4 class="ps-2"><strong>Author</strong></h4>
+      </div>
+      <h4 class="my-2">
+        <u>{{ post.title }}</u>
+      </h4>
+      <p>Category: {{ post.category }}</p>
+      <p class="text-muted">
+        Posted: {{ post.date_posted.strftime("%d %B, %Y") }}
+      </p>
+      <div class="card">
+        <div class="card-body">
+          Magnet:
+          <a href="{{ post.magnet_url }}">
+            <img
+              src="{{ url_for('static', filename='magnet.png') }}"
+              alt="magnet"
+              class="mn-img"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

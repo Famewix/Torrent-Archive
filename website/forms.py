@@ -14,7 +14,7 @@ def magnet_url(form, field):
 
 class PostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired(), Length(min=8, max=60)])
-    category = SelectField("Category", choices=["Video", "Games", "Application", "Other", "Porn", "Audio"], validators=[DataRequired()])
+    category = SelectField("Category", choices=["Video", "Games", "OS", "Application", "Other", "Porn", "Audio"], validators=[DataRequired()])
     magnet = StringField('Magnet URL', validators=[DataRequired(), magnet_url])
     submit = SubmitField("POST")
 
