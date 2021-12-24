@@ -17,7 +17,7 @@
         font-family: "Fira Sans", sans-serif;
       }
       .nav-bg-dark {
-        background-color: #11052c;
+        background-color: #000000;
       }
     </style>
     {% block head %}{% endblock %}
@@ -75,15 +75,15 @@
           <div class="d-flex">
             {% if current_user.is_authenticated %}
             <form action="{{url_for('views.post')}}">
-              <input type="submit" value="POST" class="btn btn-info" />
+              <input type="submit" value="POST" class="btn btn-nav" />
             </form>
             <form action="{{url_for('views.logout')}}" class="ms-2">
-              <input type="submit" value="LOGOUT" class="btn btn-danger" />
+              <input type="submit" value="LOGOUT" class="btn btn-nav" />
             </form>
 
             {%else%}
             <form action="{{url_for('views.login')}}">
-              <input type="submit" value="LOGIN" class="btn btn-info" />
+              <input type="submit" value="LOGIN" class="btn btn-nav" />
             </form>
             {%endif%}
           </div>

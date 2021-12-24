@@ -1,3 +1,13 @@
+::-moz-selection { /* Code for Firefox */
+  color: rgb(255, 255, 255);
+  background: rgb(0, 0, 0);
+}
+
+::selection {
+  color: rgb(255, 255, 255);
+  background: rgb(0, 0, 0);
+}
+
 .center {
   display: flex;
   align-items: center;
@@ -17,10 +27,11 @@
 }
 
 .text-input {
-  border-style: solid;
-  /* border-color: black; */
+  border: 2px solid ;
   border-radius: 4px;
 }
+
+/* bootstarp css overwrite!!!! */
 
 .card {
   position: relative;
@@ -28,8 +39,43 @@
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #black;
+  background-color: #fff;
   background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.924);
+  border: 2px solid rgb(0, 0, 0);
   border-radius: 0.25rem;
+}
+
+.btn-nav {
+  color: rgb(255, 255, 255);
+  background-color: #000000;
+  border: 1px solid #ffffff;
+}
+
+.btn-nav:hover {
+  color: rgb(0, 0, 0);
+  background-color: #ffffff;
+  border-color: #ffffff;
+}
+
+
+.btn-login {
+  color: #000;
+  background-color: #ffffff;
+  border: 2px solid #000000;
+}
+.btn-login:hover {
+  color: rgb(255, 255, 255);
+  background-color: #000000;
+  border-color: #000000;
+}
+
+.form-check-input:focus {
+  border-color: #000000;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.25);
+}
+
+.form-check-input:checked {
+  background-color: #000000;
+  border-color: #000000;
 }
